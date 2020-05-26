@@ -115,3 +115,85 @@ ___
 ![Slide12](images-talk/Slide12.png)
 
 For the remainder of the talk I'm going to walk you through a simple data pipeline that I've been working on to show how easy it was to work with Great Expectations out-of-the-box.
+
+___
+
+![Slide13](images-talk/Slide13.png)
+
+* Simple data pipeline with 5 separate steps:
+1. Run the Python file `cases.py` which downloads a daily batch of covid19 case data from the [Johns Hopkins GitHub](https://github.com/CSSEGISandData/COVID-19) repo.
+2. Set up validation tests on raw data.
+3. If tests pass, load new data into existing PostgreSQL database.
+4. Apply more validation tests to an existing view.
+5. Use dataset for analysis (in this example, Tableau).
+
+___
+
+![Slide14](images-talk/Slide14.png)
+
+Code snippet I used to generate data for this project.
+
+* Source code I used to grab the data in my GitHub repo: [COVID-19 case data](https://github.com/Brian-Doucet/covid19/blob/master/covid19/cases.py)
+
+* Data source: [JHU CSSE COVID-19 Dataset](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data)
+
+___
+ 
+![Slide15](images-talk/Slide15.png)
+
+Snapshot of the data for this example:
+
+* Working with 131K records.
+* Contains information on confirmed and active COVID-19 cases
+  * Refer to the [field descriptions](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data) for more information on data outputs and what they represent.
+  
+___
+
+![Slide16](images-talk/Slide16.png)
+
+The first step in the Great Expectations process is to create a new expectation suite. This will store your expectations about your data in the `great_expectations/expectations/<my_expectations.json>` directory.
+
+After you provider a path to your sample data and name your new expectation suite, the command line interface will run pick a few columns in your dataset and run some basic data profiling.
+
+___
+
+![Slide17](images-talk/Slide17.png)
+
+After Great Expectations profiles some sample data, the next step is to review the initial expectations. This can be done visually within the [DataDocs](https://docs.greatexpectations.io/en/0.7.11/guides/data_documentation.html) (static HTML report that is generated)
+
+___
+
+![Slide18](images-talk/Slide18.png)
+
+After intially reviewing the expectations that were generated, you'll want to start the iterative process of analzing your data and applying more validation tests.
+
+Another Great Expectations feature that I love is that they use Jupyter notebooks to interactively edit your expectations. Rather than editng the `JSON` files it generates this awesome boilerplate that loads your batch data and builds a notebook cell for every expectation in the suite. It makes editing a **BREEZE**.
+
+**Note**:  These notebooks were intended to be discarded after you edit and not saved. They are basically scratch notebooks for data analysis.
+
+___
+
+![Slide22](images-talk/Slide22.png)
+
+Example of what the boilerplate Jupyter notebook looks like when editing expectations out-of-the-box.
+
+___
+
+![Slide19](images-talk/Slide19.png)
+
+At a high-level, you'll likely loop over these three events when using Great Expectations. Spending most of your time between Reviewing and Editing.
+
+___
+
+![Slide20](images-talk/Slide20.png)
+
+List of some resources that I found helpful when first starting to use the Great Expectations package
+
+___
+
+![Slide21](images-talk/Slide21.png)
+
+Thats all - feel free to reach out with any questions.
+
+* Email: doucetba@gmail.com
+* Boston Python Slack: `@Brian Doucet`
