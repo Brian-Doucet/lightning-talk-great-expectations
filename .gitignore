@@ -1,0 +1,2 @@
+# Exclude folder specific metadata
+.DS_Store
